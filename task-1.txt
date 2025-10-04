@@ -1,4 +1,74 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541056
+AD-SOYAD:MehmetAkyar
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Seçtiğim konu sınav çalışma planı oluşturma algoritması.
+
+BAŞLA
+
+    // 1. Girdi Al
+    Yaz("Toplam kaç dersten sınava gireceksin?")
+    Oku ders_sayisi
+
+    Yaz("Sınava kaç gün kaldı?")
+    Oku gun_sayisi
+
+    Toplam_saat = 0
+    DersListesi = boş liste
+
+    // 2. Ders Bilgilerini Al
+    DÖNGÜ i = 1'den ders_sayisi'na kadar
+        Yaz(i, ". dersin adını gir:")
+        Oku ders_adi
+
+        Yaz(ders_adi, "dersinde eksik konuların çok mu? (evet/hayır)")
+        Oku eksik_konular
+
+        Yaz(ders_adi, "dersine toplam kaç saat çalışmak istiyorsun?")
+        Oku ders_saat
+
+        DersListesi'ne (ders_adi, eksik_konular, ders_saat) ekle
+        Toplam_saat = Toplam_saat + ders_saat
+    DÖNGÜ SONU
+
+    // 3. Günlük Çalışma Süresi Hesapla
+    Gunluk_saat = Toplam_saat / gun_sayisi
+
+    Yaz("Toplam çalışma süresi:", Toplam_saat, "saat")
+    Yaz("Her güne ortalama", Gunluk_saat, "saat düşüyor.")
+
+    // 4. Çalışma Planı Oluştur
+    GÜN = 1
+    DÖNGÜ GÜN <= gun_sayisi
+
+        Yaz("-----", GÜN, ". Gün Planı -----")
+
+        Kalan_saat = Gunluk_saat
+
+        DÖNGÜ her ders in DersListesi
+            EĞER ders.eksik_konular == "evet" VE Kalan_saat > 0 İSE
+                ders_çalış_saat = ders.ders_saat / 2       // Eksik konular için öncelik
+            DEĞİLSE
+                ders_çalış_saat = ders.ders_saat / 3
+            SON
+
+            EĞER Kalan_saat >= ders_çalış_saat İSE
+                Yaz(ders.adi, "dersine", ders_çalış_saat, "saat ayır.")
+                Kalan_saat = Kalan_saat - ders_çalış_saat
+            DEĞİLSE
+                Yaz(ders.adi, "dersine kalan", Kalan_saat, "saat ayır.")
+                Kalan_saat = 0
+            SON
+
+            EĞER Kalan_saat == 0 İSE
+                DÖNGÜYÜ KIR
+            SON
+        DÖNGÜ SONU
+
+        Yaz("Günün sonunda kısa tekrar yapmayı unutma!")
+        GÜN = GÜN + 1
+    DÖNGÜ SONU
+
+    Yaz("Tüm çalışma planı oluşturuldu!")
+
+BİTİR
+    
