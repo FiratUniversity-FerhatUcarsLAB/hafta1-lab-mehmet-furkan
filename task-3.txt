@@ -1,4 +1,92 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541056
+AD-SOYAD: Mehmet Furkan Akyar
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+Seçilen görev "sınıf notlarını en yüksekten en düşüğe sıralama."
+
+
+Bu görevde, sıralama için "Kabarcık Sıralaması" (Bubble Sort) mantığı kullanıldı. 
+Bu algoritma, listedeki her bir notu yanındaki notla karşılaştırır ve eğer soldaki not sağdakinden küçükse yerlerini değiştirir. Bu işlem, en yüksek not "kabarcık" gibi listenin en başına çıkana kadar devam eder.
+
+
+
+BAŞLA
+
+1. Not Listesini Tanımla:
+notlar = [85, 92, 78, 65, 95, 88] (Örnek not listesi)
+
+2. Tekrarlanan Döngü Başlat:
+Listenin başından sonuna kadar gitmek için bir dış döngü oluştur. Bu döngü, tüm notların en az bir kere kontrol edilmesini sağlar.
+
+`i = 0` iken `listenin sonuna kadar` tekrarla:
+
+ **3. Karşılaştırma Döngüsü Başlat:**
+    Listenin başından başlayarak her bir notu yanındakiyle karşılaştırmak için bir iç döngü oluştur.
+
+    `j = 0` iken `listenin sonundan bir önceki elemana kadar` tekrarla:
+
+    **4. Notları Karşılaştır:**
+       Eğer `notlar[j]` (soldaki not), `notlar[j+1]` (sağdaki not) değerinden **küçükse**:
+
+       **5. Yer Değiştir:**
+          İki notun yerini değiştir.
+          `gecici = notlar[j]`
+          `notlar[j] = notlar[j+1]`
+          `notlar[j+1] = gecici`
+
+ **6. Döngüleri Bitir:**
+    Tüm karşılaştırmalar bittiğinde iç ve dış döngüler sona erer.
+
+
+
+
+İlk oluşturulan Kabarcık Sıralaması (Bubble Sort) algoritmasına alternatif olarak, aynı işi yapan farklı bir mantığa sahip Seçmeli Sıralama (Selection Sort) algoritması kullanıldı. Bu algoritmanın mantığı listenin tamamını tarayarak en yüksek notu bulur ve bu notu listenin en başına yerleştirir. Daha sonra, kalan kısım için aynı işlemi tekrarlar.
+
+
+
+BAŞLA
+
+1. Not Listesini Tanımla:
+notlar = [85, 92, 78, 65, 95, 88] (Örnek not listesi)
+
+2. Ana Döngüyü Başlat:
+Listenin başından sonuna doğru ilerleyen bir işaretçi (örneğin i) tanımla. Bu döngü, her seferinde bir sonraki en yüksek notu doğru yerine yerleştirecek.
+
+ `i = 0` iken `listenin sonundan bir önceki elemana kadar` tekrarla:
+
+ **3. En Yüksek Notun Yerini Bul:**
+    a. Başlangıçta, o anki pozisyonu (`i`) en yüksek notun olduğu yer olarak kabul et.
+       `en_yuksek_indeks = i`
+
+    b. Listenin geri kalanını taramak için ikinci bir döngü başlat.
+       `j = i + 1` iken `listenin sonuna kadar` tekrarla:
+
+       c. Eğer `notlar[j]` (kontrol edilen not), şu anki en yüksek nottan (`notlar[en_yuksek_indeks]`) **büyükse**:
+          Yeni en yüksek notun indeksini güncelle.
+          `en_yuksek_indeks = j`
+
+ **4. Yer Değiştirme:**
+    İç döngü bittiğinde, taranan bölümdeki en yüksek notun yerini bulmuş olursun.
+    Bu en yüksek notu, ana döngünün işaret ettiği `i` pozisyonundaki not ile değiştir.
+
+    `gecici = notlar[i]`
+    `notlar[i] = notlar[en_yuksek_indeks]`
+    `notlar[en_yuksek_indeks] = gecici`
+
+5. Döngüyü Bitir:
+Ana döngü tamamlandığında liste sıralanmış olur.
+
+6. Sıralanmış Listeyi Göster:
+SIRALANMIS LISTEYI YAZDIR (notlar)
+
+BİTİR
+
+
+
+İki Algoritma Arasındaki Temel Fark:
+İlk Versiyon (Bubble Sort): Sürekli olarak yan yana duran iki notu karşılaştırır ve yer değiştirir. Daha büyük notlar yavaş yavaş listenin başına "kabarcık gibi" yükselir. Çok fazla yer değiştirme işlemi yapar.
+
+Bu Versiyon (Selection Sort): Her turda listenin taranan kısmındaki sadece bir en yüksek notu bulur ve onu doğrudan olması gereken yere (o anki turun en başına) koyar. Daha az yer değiştirme işlemi yapar ama daha fazla karşılaştırma yapar.
+
+Her iki algoritma da basit ve küçük listeler için uygundur, ancak büyük veri setlerinde yavaş kalırlar.
