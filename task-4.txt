@@ -1,4 +1,154 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541056
+AD-SOYAD: Mehmet Furkan Akyar
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Seçilen görev "lego ile belirli şekil yapma planı"
+
+
+
+
+Problem çözme yöntemi olarak "Parçalara Ayır ve Çöz" (Divide and Conquer) yaklaşımı kullanılmıştır.
+
+Hedef Şekil: Basit bir LEGO Kulesi
+
+
+1. Adım: Problemi Parçalarına Ayırma
+Büyük bir "kule yap" görevini doğrudan çözmek yerine, onu daha küçük ve mantıklı adımlara bölelim:
+
+  Problem 1: Hazırlık: Gerekli LEGO parçalarını toplamak ve çalışma alanını düzenlemek.
+
+  Problem 2: Zemin (Temel): Kulenin sağlam tabanını oluşturmak.
+
+  Problem 3: Gövde: Kulenin katlarını üst üste inşa etmek.
+
+  Problem 4: Tepe: Kulenin en üst kısmını tamamlamak.
+
+  Problem 5: Son Kontrol: Kulenin tamamlandığını ve sağlam olduğunu kontrol etmek.
+
+Bu yaklaşım, her seferinde sadece bir göreve odaklanmamızı sağlar ve süreci çok daha basit hale getirir.
+
+
+2. Adım: Her Parça İçin Algoritma Oluşturma
+
+  Hazırlık Aşaması:
+
+    Kule planına bak (zemin için hangi, gövde için hangi parçalar lazım?).
+
+    Gerekli tüm LEGO parçalarını renklerine ve şekillerine göre grupla.
+
+    Çalışmak için düz bir zemin seç.
+
+  Zemin İnşa Aşaması:
+
+    Zemin için belirlenen büyük ve düz parçaları al.
+
+    Bu parçaları birleştirerek kulenin temelini (örneğin, 8x8'lik bir kare alan) oluştur.
+
+    Zeminin düz ve sağlam olduğundan emin ol.
+
+  Gövdeyi İnşa Aşaması:
+
+    Gövde için gerekli olan standart (örneğin 2x4'lük) parçaları al.
+
+    Zeminin kenarlarından başlayarak ilk katı ör.
+
+    Kulenin istenen yüksekliğe ulaşana kadar üst üste yeni katlar ekle.
+
+    Her katın bir öncekinden daha sağlam olması için parçaların yerini kaydırarak diz (tuğla örme tekniği).
+
+  Tepe İnşa Aşaması:
+
+    Tepe için ayrılan özel veya daha küçük parçaları al.
+
+    Bu parçaları gövdenin en üst sırasına yerleştirerek kuleyi estetik bir şekilde bitir.
+
+    En tepeye bir bayrak veya sivri bir parça ekle.
+
+  Son Kontrol Aşaması:
+
+    Kulenin tüm parçalarının birbirine sıkıca bağlı olduğunu kontrol et.
+
+    Kulenin düz durup durmadığına bak.
+
+    Kulenin sağlamlığını hafifçe iterek test et.
+
+
+3. Adım: Basit Sözde Kod (Pseudocode)
+
+// Bu program, LEGO parçaları kullanarak basit bir kule yapar.
+
+BAŞLA: ANA_PROGRAM
+
+  // 1. Aşama: Hazırlık
+  ÇAĞIR: Hazırlık_Yap()
+
+  // 2. Aşama: Zemin
+  ÇAĞIR: Zemin_İnşa_Et()
+
+  // 3. Aşama: Gövde
+  ÇAĞIR: Gövdeyi_İnşa_Et(10) // Örnek olarak 10 katlı bir kule yapalım
+
+  // 4. Aşama: Tepe
+  ÇAĞIR: Tepeyi_İnşa_Et()
+
+  // 5. Aşama: Son Kontrol ve Bitiş
+  ÇAĞIR: Son_Kontrol_Yap()
+
+  YAZDIR: "Tebrikler, LEGO kuleniz tamamlandı!"
+
+BİTİR: ANA_PROGRAM
+
+
+// --- Alt Fonksiyonların Tanımları ---
+
+FONKSİYON Hazırlık_Yap()
+  Gerekli_Parçalar_Listesi = Planı_Oku()
+  Parçaları_Grupla(Gerekli_Parçalar_Listesi)
+  Çalışma_Alanını_Temizle()
+  YAZDIR: "Hazırlık tamamlandı."
+BİTİR FONKSİYON
+
+
+FONKSİYON Zemin_İnşa_Et()
+  Zemin_Parçalarını_Al()
+  Parçaları_Birleştirerek_Kare_Zemin_Oluştur()
+  EĞER (Zemin_Sağlam_Değilse)
+    YAZDIR: "Uyarı: Zemin sağlam değil, kontrol et!"
+  DEĞİLSE
+    YAZDIR: "Zemin başarıyla inşa edildi."
+  BİTİR EĞER
+BİTİR FONKSİYON
+
+
+FONKSİYON Gövdeyi_İnşa_Et(Kat_Sayısı)
+  Mevcut_Kat = 1
+
+  TEKRARLA (Mevcut_Kat <= Kat_Sayısı)
+    YAZDIR: Mevcut_Kat + ". kat inşa ediliyor."
+    Gövde_Parçalarını_Al()
+    Önceki_Katın_Üzerine_Sırayla_Diz()
+    Mevcut_Kat = Mevcut_Kat + 1
+  BİTİR TEKRARLA
+  YAZDIR: "Gövde tamamlandı."
+BİTİR FONKSİYON
+
+
+FONKSİYON Tepeyi_İnşa_Et()
+  Tepe_Parçalarını_Al()
+  Parçaları_Gövdenin_Üzerine_Yerleştir()
+  YAZDIR: "Tepe tamamlandı."
+BİTİR FONKSİYON
+
+
+FONKSİYON Son_Kontrol_Yap()
+  Tüm_Bağlantıları_Sıkılaştır()
+  EĞER (Kule_Sağlam_Görünüyorsa)
+    YAZDIR: "Son kontrol başarılı."
+  DEĞİLSE
+    YAZDIR: "Uyarı: Kule sağlam değil, gevşek parçaları kontrol et!"
+  BİTİR EĞER
+BİTİR FONKSİYON
+
+
+
+
