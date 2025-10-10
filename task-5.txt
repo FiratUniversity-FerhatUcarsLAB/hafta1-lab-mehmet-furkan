@@ -1,4 +1,82 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541056
+AD-SOYAD: Mehmet Furkan Akyar
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer istemleri aşağıya ekleyiniz:
+
+Seçilen Problem: İdeal Kahve Demleme Algoritması
+
+
+1. Basit Algoritma
+Algoritma, kullanıcının damak zevkine (sertlik) ve istediği fincan sayısına göre ideal kahve için gerekli malzeme miktarını ve demleme süresini belirler.
+
+Adımlar:
+
+Başla.
+
+Kullanıcıdan kahvenin sertlik derecesini iste (Örn: Hafif, Orta, Sert).
+
+Kullanıcıdan kaç fincan kahve hazırlamak istediğini öğren.
+
+Seçilen sertlik derecesine göre fincan başına kullanılacak kahve miktarını belirle.
+
+Hafif içim için: 12 gram
+
+Orta içim için: 15 gram
+
+Sert içim için: 18 gram
+
+Toplam su miktarını hesapla (Fincan sayısı x 250 ml).
+
+Toplam kahve miktarını hesapla (Fincan sayısı x fincan başına kahve miktarı).
+
+Demleme süresini standart olarak belirle (Örn: 4 dakika).
+
+Kullanıcıya hazırlaması gereken su ve kahve miktarını, demleme süresini ve yapması gerekenleri sırasıyla söyle.
+
+Bitir.
+
+2. Pseudocode (Sözde Kod)
+Aşağıda, yukarıdaki algoritmanın adımlarını daha teknik bir dille ifade eden pseudocode bulunmaktadır.
+
+BAŞLA
+
+  // Değişkenleri Tanımla
+  DEĞİŞKEN sertlik_tercihi: METİN
+  DEĞİŞKEN fincan_sayisi: TAMSAYI
+  DEĞİŞKEN kahve_gram_fincan_basi: TAMSAYI
+  DEĞİŞKEN toplam_kahve: TAMSAYI
+  DEĞİŞKEN toplam_su: TAMSAYI
+  DEĞİŞKEN demleme_suresi: TAMSAYI
+
+  // Girdileri Al
+  EKRANA_YAZ "Kahve sertliğini seçin (Hafif, Orta, Sert):"
+  OKU sertlik_tercihi
+
+  EKRANA_YAZ "Kaç fincan hazırlamak istersiniz?"
+  OKU fincan_sayisi
+
+  // Sertliğe Göre Kahve Miktarını Belirle
+  EĞER sertlik_tercihi == "Hafif" İSE
+    kahve_gram_fincan_basi = 12
+  DEĞİLSE EĞER sertlik_tercihi == "Orta" İSE
+    kahve_gram_fincan_basi = 15
+  DEĞİLSE EĞER sertlik_tercihi == "Sert" İSE
+    kahve_gram_fincan_basi = 18
+  DEĞİLSE
+    EKRANA_YAZ "Geçersiz seçim! 'Orta' olarak ayarlandı."
+    kahve_gram_fincan_basi = 15
+  EĞER_BİTTİ
+
+  // Hesaplamaları Yap
+  toplam_kahve = fincan_sayisi * kahve_gram_fincan_basi
+  toplam_su = fincan_sayisi * 250 // Her fincan için 250 ml su
+  demleme_suresi = 4 // Standart 4 dakika
+
+  // Sonucu ve Talimatları Göster
+  EKRANA_YAZ "İdeal kahveniz için:"
+  EKRANA_YAZ "Gereken Kahve Miktarı: " + toplam_kahve + " gram"
+  EKRANA_YAZ "Gereken Su Miktarı: " + toplam_su + " ml"
+  EKRANA_YAZ "Önerilen Demleme Süresi: " + demleme_suresi + " dakika"
+  EKRANA_YAZ "Afiyet olsun!"
+
+SON
