@@ -1,4 +1,98 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:240541056
+AD-SOYAD: Mehmet Furkan Akyar
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+
+Tic-Tac-Toe Kazanma Stratejisi Algoritması
+
+Bu algoritma, bir Tic-Tac-Toe oyununda bilgisayarın (veya oyuncunun) her zaman en optimal hamleyi yapmasını sağlamak için tasarlanmıştır. Algoritma, hamleleri bir öncelik sırasına koyar. Her adımda, listedeki en yüksek öncelikli geçerli hamleyi yapar. Eğer bir hamle yapılamıyorsa, bir sonrakine geçer. Bu strateji ile algoritmayı takip eden oyuncu asla kaybetmez; en kötü sonuç beraberliktir.
+
+1. Algoritmanın Karar Verme Mantığı ve Optimal Strateji
+Algoritma, basit bir hiyerarşiye dayanır. Her zaman en acil ve en avantajlı hamleyi yapmaya çalışır. İşte adım adım karar verme mantığı:
+
+Kazan: Eğer tek bir hamle ile oyunu kazanabiliyorsan, o hamleyi yap. Bu en yüksek önceliktir. Kazanma fırsatı varken başka hiçbir hamle düşünülmez.
+
+Engelle: Eğer rakip bir sonraki hamlesinde oyunu kazanabiliyorsa, onu engellemek için gerekli kareye oyna. Bu, kaybetmemek için en kritik ikinci adımdır.
+
+Çatal Kur (Fork): Öyle bir hamle yap ki, bu hamleyle aynı anda iki farklı kazanma hattı oluştur. Rakip bu iki tehditten sadece birini engelleyebilir, bu da bir sonraki hamlede kazanmanı garantiler. Bu, en güçlü saldırı hamlesidir.
+
+Rakibin Çatalını Engelle: Rakibin bir sonraki hamlede bir "çatal" kurma potansiyeli varsa, o hamleyi engelle. Bu genellikle iki şekilde yapılır:
+
+Rakibin çatal kuracağı kareye kendi taşını koymak.
+
+Rakibi, çatal kurmak yerine savunma yapmaya zorlayacak bir tehdit oluşturmak (örneğin, kendi iki taşını yan yana getirmek).
+
+Merkezi Al: Eğer tahtanın merkezi boşsa, orayı al. Merkez kare (3x3'lük tahtada 5. kare), en fazla kazanma kombinasyonuna (4 farklı hat) dahil olduğu için stratejik olarak en değerli karedir.
+
+Karşı Köşeyi Al: Eğer rakip bir köşeye oynadıysa, onun tam karşısındaki köşeyi al. Bu, rakibin potansiyel çatal kurma yollarını sınırlar.
+
+Boş Bir Köşeyi Al: Yukarıdaki adımlardan hiçbiri uygun değilse, boş olan herhangi bir köşeye oyna. Köşeler, kenarlara göre daha değerlidir.
+
+Boş Bir Kenarı Al: Son çare olarak, boş olan herhangi bir kenar karesine (köşe olmayan) oyna.
+
+2. Rakibin Hareketlerini Öngörme ve Risk Değerlendirmesi
+Öngörme: Bu algoritma, rakibin ne yapacağını karmaşık bir şekilde tahmin etmez. Bunun yerine, rakibin en bariz ve tehlikeli hamlelerini varsayar. "Engelle" (2. adım) ve "Rakibin Çatalını Engelle" (4. adım) adımları, rakibin bir sonraki hamlede kazanma veya büyük bir avantaj elde etme potansiyelini doğrudan kontrol eder. Bu, rakibin en rasyonel hamlelerini öngörmenin basit ve etkili bir yoludur.
+
+Risk Değerlendirmesi: Risk, algoritmanın öncelik sıralamasının doğasında vardır.
+
+En Yüksek Risk: Kaybetme riski. Bu risk, 2. adımdaki "Engelle" kuralıyla yönetilir.
+
+Orta Risk: Rakibin stratejik bir avantaj (çatal gibi) elde etmesi. Bu risk, 4. adımdaki "Çatalı Engelle" kuralıyla yönetilir.
+
+Düşük Risk: Rakibin daha az değerli bir kareyi alması. Algoritma, kazanma veya engelleme gibi acil durumlar olmadığında her zaman en değerli kareleri (merkez, köşeler) alarak bu riski en aza indirir.
+
+3. Basit Pseudocode (Sözde Kod)
+Bu pseudocode, yukarıdaki stratejiyi bir fonksiyon gibi temsil eder. siradakiHamleyiBul fonksiyonu çağrıldığında, tahtanın mevcut durumuna göre en iyi hamlenin koordinatlarını döndürür.
+
+// Ana fonksiyon: Tahtanın mevcut durumunu alır ve en iyi hamleyi döndürür.
+FONKSİYON siradakiHamleyiBul(tahta):
+
+    // 1. ADIM: Kazanabilir miyim?
+    hamle = kazanmaHamlesiBul(BENİM_SEMBOLÜM, tahta)
+    EĞER hamle != boş İSE:
+        DÖNDÜR hamle
+
+    // 2. ADIM: Rakibi engelleyebilir miyim?
+    hamle = kazanmaHamlesiBul(RAKİP_SEMBOLÜ, tahta)
+    EĞER hamle != boş İSE:
+        DÖNDÜR hamle
+
+    // 3. ADIM: Çatal kurabilir miyim?
+    hamle = catalKurmaHamlesiBul(BENİM_SEMBOLÜM, tahta)
+    EĞER hamle != boş İSE:
+        DÖNDÜR hamle
+
+    // 4. ADIM: Rakibin çatalını engellemem gerekiyor mu?
+    // Not: Bu adım, rakibin çatal kurma olasılığını analiz eder ve
+    // bunu önleyecek en iyi hamleyi bulur.
+    hamle = rakipCataliniEngelle(RAKİP_SEMBOLÜ, tahta)
+    EĞER hamle != boş İSE:
+        DÖNDÜR hamle
+
+    // 5. ADIM: Merkez boş mu?
+    EĞER tahta.merkezKare == boş İSE:
+        DÖNDÜR merkezKareKoordinati
+
+    // 6. ADIM: Rakibin köşesine karşılık gelen köşe boş mu?
+    hamle = karsiKoseyiBul(RAKİP_SEMBOLÜ, tahta)
+    EĞER hamle != boş İSE:
+        DÖNDÜR hamle
+
+    // 7. ADIM: Herhangi bir boş köşe var mı?
+    hamle = bosKoseBul(tahta)
+    EĞER hamle != boş İSE:
+        DÖNDÜR hamle
+
+    // 8. ADIM: Herhangi bir boş kenar var mı?
+    hamle = bosKenarBul(tahta)
+    DÖNDÜR hamle
+
+// Yardımcı Fonksiyon Örneği
+// Verilen sembol için bir sonraki hamlede kazanma olup olmadığını kontrol eder.
+// Varsa, kazandıran karenin koordinatını döndürür.
+FONKSİYON kazanmaHamlesiBul(sembol, tahta):
+    // Tüm satırları, sütunları ve çaprazları kontrol et
+    // Eğer bir hatta iki tane 'sembol' ve bir tane 'boş' kare varsa:
+        // 'boş' karenin koordinatını DÖNDÜR
+    // Hiçbir kazanma hamlesi bulunamazsa 'boş' DÖNDÜR
+
